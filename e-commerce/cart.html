@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="icon" type="image/x-icon" href="logo.webp">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="scart.css">
+   
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="scart.html">MyShop</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="scart.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Categories</a></li>
+        
+      
+        </ul>
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    
+    <h2 class="your-cart">Your Cart<i class="fas fa-shopping-cart"></i></h2>
+    
+    <div id="cart-list"></div>
+    <div class="top">
+        <button class="Buy">Buy</button>
+        <p id="total-price">0</p>
+       
+    </div>
+    
+    <script>
+       
+            const cartKey = 'cartItems';
+            const totalPriceKey = 'totalPrice';
+            const totalPrices = document.getElementById('total-price')
+
+            $(document).ready(function(){
+    $('.menu-toggle').click(function () {
+        $('.nav-links').toggleClass('active');
+        $('#result').toggleClass('active');
+        
+    }); 
+});
+
+            function updateTotalPrice() {
+            let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+            let totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+            let quantity = cart.reduce((total, item) => total + item.quantity, 0)
+            localStorage.setItem(totalPriceKey, totalPrice);
+           totalPrices.innerHTML = `Total Price: Rs ${totalPrice}   Quantity: ${quantity}`;
+            document.body.appendChild(totalPrices)
+            }
+            function displayCart() {
+                const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+                const cartList = document.getElementById('cart-list');
+               
+                const totalPrices = document.createElement('p')
+                cartList.innerHTML = ''; // Clear any existing content
+
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+
+                    const img=document.createElement('img')
+                    img.src = item.image; 
+                    img.className = 'image'
+                    
+                
+                    const itemTitle = document.createElement('h3');
+                    itemTitle.textContent = item.title;
+                    
+
+                    const itemPrice = document.createElement('p');
+                    itemPrice.textContent = `Rs ${item.price}`;
+
+                    const itemQuantity = document.createElement('p');
+                    itemQuantity.textContent = `Quantity: ${item.quantity}`;
+
+                    
+                    const BuyButton = document.createElement('button');
+                    BuyButton.className = 'Buy-Button';
+                    BuyButton.textContent = 'Buy';
+                   
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'remove-from-cart';
+                    removeButton.textContent = 'Remove';
+                    removeButton.dataset.id = item.id;
+
+                    cartItem.appendChild(img);
+                    cartItem.appendChild(itemTitle);
+                    cartItem.appendChild(itemPrice);
+                    cartItem.appendChild(itemQuantity);
+                    cartItem.appendChild(removeButton);
+                    cartItem.appendChild(BuyButton)
+                    cartList.appendChild(cartItem);
+                  
+                });
+                cartList.appendChild(totalPrices);
+            }
+
+            // Display the cart when the page loads
+            updateTotalPrice()
+            displayCart();
+
+            // Handle remove button click
+            document.getElementById('cart-list').addEventListener('click', function(event) {
+                if (event.target && event.target.classList.contains('remove-from-cart')) {
+                    const id = event.target.dataset.id;
+                    removeFromCart(id);
+                }
+            });
+
+            function removeFromCart(id) {
+                let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+                // Filter out the item with the given id
+                cart = cart.filter(item => item.id !== id);
+                // Save updated cart to localStorage
+                localStorage.setItem(cartKey, JSON.stringify(cart))
+                // Refresh the cart display
+                updateTotalPrice()
+                displayCart();
+            }
+        
+    </script>
+</body>
+</html>

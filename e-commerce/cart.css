@@ -1,0 +1,77 @@
+.cart-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+.fas{
+    font-size: 30px;
+    color:yellowgreen;
+    margin: 10px 0 0 10px;
+}
+.your-cart{
+    font-size: 30px;
+    color:yellowgreen;
+    margin: 10px 0 0 10px;
+}
+.remove-from-cart {
+    padding: 5px;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.remove-from-cart:hover {
+    background-color:red;
+}
+
+ .Buy-Button{
+    padding: 5px;
+    margin-left:10px;
+    background-color: yellow;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+.Buy-Button:hover {
+    background-color: green;
+}
+.image{
+    width: 100px;
+    height:100px;
+}
+.Buy{
+    position: relative;
+    background: rgb(225, 225, 18);
+    width:10% ;
+    padding:20px;
+    border:5px solid rgb(225, 225, 18);
+    border-radius:10px ;
+    font-size: 20px;
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor:pointer;
+    margin-left:10px
+}
+.Buy:hover{
+    background-color:green;
+    border:green;
+}
+#total-price {
+    position: relative;
+    width:45% ;
+    font-size: 20px;
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left:10px;
+}
+@media screen and (max-width:665px){
+   .Buy{
+    width: 20%;
+   } 
+}
+@media screen and (min-width:0px) and (max-width:365px){
+    .Buy{
+     width: 70%;
+    } 
+ }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scart</title>
+    <link rel="icon" type="image/x-icon" href="logo.webp">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="scart.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">MyShop</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="scart.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Categories</a></li>
+            
+            <li>
+                <form class="search-form" action="search.html" method="GET">
+                    <input type="text" name="query" id="search" placeholder="Search products...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </li>
+            <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+      
+        </ul>
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    
+<ul id="result"></ul>
+<div id="product-list"></div>
+    <script src="scart.js"></script>
+</body>
+</html>
